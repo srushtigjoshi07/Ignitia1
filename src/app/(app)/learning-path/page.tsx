@@ -22,7 +22,7 @@ function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
-    <Button type="submit" disabled={pending} className="w-full">
+    <Button type="submit" disabled={pending} className="w-full" suppressHydrationWarning>
       {pending ? 'Generating Your Path...' : 'Generate Learning Path'}
     </Button>
   );

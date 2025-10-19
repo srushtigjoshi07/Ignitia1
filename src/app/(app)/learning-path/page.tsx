@@ -1,7 +1,6 @@
 'use client';
 
-import { useActionState } from 'react';
-import { useFormStatus } from 'react-dom';
+import { useFormState, useFormStatus } from 'react-dom';
 import { getLearningPath } from '@/app/actions';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -29,7 +28,7 @@ function SubmitButton() {
 }
 
 export default function LearningPathPage() {
-  const [state, formAction] = useActionState(getLearningPath, initialState);
+  const [state, formAction] = useFormState(getLearningPath, initialState);
 
   return (
     <div className="max-w-4xl mx-auto space-y-8">

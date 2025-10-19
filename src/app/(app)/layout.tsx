@@ -1,7 +1,7 @@
 import Link from "next/link";
 import {
   BookOpenCheck,
-  Home,
+  ClipboardList,
   LayoutDashboard,
   LogOut,
   Settings,
@@ -36,6 +36,14 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 <Link href="/dashboard">
                   <LayoutDashboard />
                   <span>Dashboard</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild tooltip="Skill Assessment">
+                <Link href="/skill-assessment">
+                  <ClipboardList />
+                  <span>Skill Assessment</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>

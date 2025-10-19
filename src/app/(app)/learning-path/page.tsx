@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useActionState, useState } from 'react';
 import { useFormStatus } from 'react-dom';
 import { getLearningPath } from '@/app/actions';
 import { Button } from '@/components/ui/button';
@@ -30,7 +30,7 @@ function SubmitButton() {
 
 export default function LearningPathPage() {
   const [state, formAction] = useActionState(getLearningPath, initialState);
-
+  
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       <div className="text-center">
@@ -42,7 +42,7 @@ export default function LearningPathPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle className="font-headline">Skill Assessment</CardTitle>
+          <CardTitle className="font-headline">Learning Preferences</CardTitle>
           <CardDescription>Provide your details to generate a new learning path.</CardDescription>
         </CardHeader>
         <CardContent>

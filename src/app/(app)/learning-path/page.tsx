@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState, useState } from 'react';
+import { useActionState } from 'react';
 import { useFormStatus } from 'react-dom';
 import { getLearningPath } from '@/app/actions';
 import { Button } from '@/components/ui/button';
@@ -55,6 +55,7 @@ export default function LearningPathPage() {
                 placeholder="e.g., Proficient in HTML/CSS, beginner in JavaScript, 1 year of experience in graphic design."
                 required
                 rows={4}
+                suppressHydrationWarning
               />
             </div>
             <div className="space-y-2">
@@ -65,6 +66,7 @@ export default function LearningPathPage() {
                 placeholder="e.g., Become a full-stack developer, learn data science for marketing, get certified in cloud computing."
                 required
                 rows={4}
+                suppressHydrationWarning
               />
             </div>
             <div className="space-y-2">
@@ -73,6 +75,7 @@ export default function LearningPathPage() {
                 id="preferredLearningStyle"
                 name="preferredLearningStyle"
                 placeholder="e.g., Visual, hands-on projects, video tutorials"
+                suppressHydrationWarning
               />
             </div>
             <SubmitButton />

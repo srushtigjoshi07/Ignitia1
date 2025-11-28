@@ -53,7 +53,7 @@ const assessSkillsPrompt = ai.definePrompt({
   {{/each}}
 
   Based on the responses, generate a skill profile with the following information:
-  - Overall Score: A numerical score representing the overall competency level.
+  - Overall Score: A numerical score representing the overall competency level. If an answer is blank, nonsensical, or completely irrelevant to the question, it should be ignored and not contribute to the final score.
   - Strengths: A list of identified strengths based on the responses.
   - Weaknesses: A list of identified weaknesses based on the responses.
   - Recommendations: Personalized recommendations for improvement.

@@ -61,30 +61,35 @@ const certificationExams = [
         provider: 'OpenJS Foundation',
         description: 'Validates your competence in JavaScript (Node.js).',
         tags: ['javascript', 'node.js', 'js'],
+        url: 'https://openjsf.org/certification/jsnd/',
     },
     {
         name: 'AWS Certified Cloud Practitioner',
         provider: 'Amazon Web Services',
         description: 'Foundational understanding of AWS Cloud concepts, services, and terminology.',
         tags: ['aws', 'cloud'],
+        url: 'https://aws.amazon.com/certification/certified-cloud-practitioner/',
     },
     {
         name: 'Google Certified Professional - Cloud Architect',
         provider: 'Google Cloud',
         description: 'Demonstrate your ability to design, develop, and manage robust, secure, and scalable cloud solutions.',
         tags: ['gcp', 'google cloud', 'cloud', 'architect'],
+        url: 'https://cloud.google.com/certification/cloud-architect',
     },
     {
         name: 'Certified Associate in Python Programming (PCAP)',
         provider: 'Python Institute',
         description: 'Measures your ability to accomplish coding tasks related to the basics of programming in the Python language.',
         tags: ['python'],
+        url: 'https://pythoninstitute.org/pcap',
     },
     {
         name: 'Certified React Developer',
         provider: 'React Training',
         description: 'Validate your expertise in React and its core principles.',
         tags: ['react', 'javascript'],
+        url: 'https://www.react-developer-certification.com/',
     }
 ];
 
@@ -238,8 +243,8 @@ export default function SkillAssessmentPage() {
                        </div>
                     </CardContent>
                     <CardContent>
-                        <Button className='w-full' variant="outline">
-                           Learn More
+                        <Button className='w-full' variant="outline" asChild>
+                           <Link href={cert.url} target="_blank" rel="noopener noreferrer">Learn More</Link>
                         </Button>
                     </CardContent>
                 </Card>

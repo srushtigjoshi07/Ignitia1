@@ -38,7 +38,11 @@ export default function LearningPathPage() {
   const handleCompleteModule = (moduleTitle: string) => {
     setCompletedModules(prev => {
       const newSet = new Set(prev);
-      newSet.add(moduleTitle);
+      if (newSet.has(moduleTitle)) {
+        newSet.delete(moduleTitle);
+      } else {
+        newSet.add(moduleTitle);
+      }
       return newSet;
     });
   };
@@ -115,7 +119,9 @@ export default function LearningPathPage() {
                     </CardTitle>
                     <CardDescription>Module resources and activities.</CardDescription>
                   </div>
-                  {!isCompleted && <Button onClick={() => handleCompleteModule(module.title)} size="sm"><Check className='mr-2 h-4 w-4'/> Mark as Complete</Button>}
+                  <Button onClick={() => handleCompleteModule(module.title)} size="sm" variant={isCompleted ? 'outline' : 'default'}>
+                    <Check className='mr-2 h-4 w-4'/> {isCompleted ? 'Mark as Incomplete' : 'Mark as Complete'}
+                  </Button>
                 </CardHeader>
                 <CardContent>
                   <Accordion type="single" collapsible className="w-full" defaultValue='resources'>
@@ -133,34 +139,30 @@ export default function LearningPathPage() {
                         </ul>
                       </AccordionContent>
                     </AccordionItem>
-                     {isCompleted && (
-                        <>
-                          <AccordionItem value="exercise">
-                            <AccordionTrigger>
-                               <div className="flex items-center gap-2">
-                                    <ListChecks className="h-5 w-5" /> Visual Hands-on Exercise
-                                </div>
-                            </AccordionTrigger>
-                            <AccordionContent>
-                                <HandsOnExercise exercise={module.handsOnExercise} />
-                            </AccordionContent>
-                          </AccordionItem>
-                          <AccordionItem value="flashcards">
-                            <AccordionTrigger>
-                                <div className="flex items-center gap-2">
-                                    <Zap className="h-5 w-5" /> Flashcards
-                                </div>
-                            </AccordionTrigger>
-                             <AccordionContent>
-                                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-                                    {module.flashcards.map((flashcard, index) => (
-                                        <Flashcard key={index} flashcard={flashcard} />
-                                    ))}
-                                </div>
-                            </AccordionContent>
-                          </AccordionItem>
-                        </>
-                     )}
+                    <AccordionItem value="exercise">
+                      <AccordionTrigger>
+                          <div className="flex items-center gap-2">
+                              <ListChecks className="h-5 w-5" /> Visual Hands-on Exercise
+                          </div>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                          <HandsOnExercise exercise={module.handsOnExercise} />
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="flashcards">
+                      <AccordionTrigger>
+                          <div className="flex items-center gap-2">
+                              <Zap className="h-5 w-5" /> Flashcards
+                          </div>
+                      </AccordionTrigger>
+                        <AccordionContent>
+                          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+                              {module.flashcards.map((flashcard, index) => (
+                                  <Flashcard key={index} flashcard={flashcard} />
+                              ))}
+                          </div>
+                      </AccordionContent>
+                    </AccordionItem>
                   </Accordion>
                 </CardContent>
               </Card>

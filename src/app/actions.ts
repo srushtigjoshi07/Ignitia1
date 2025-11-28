@@ -13,7 +13,7 @@ const LearningPathFormSchema = z.object({
 
 type LearningPathState = {
   error?: string | null;
-} & LearningPathOutput;
+} & Partial<LearningPathOutput>;
 
 export async function getLearningPath(
   prevState: LearningPathState,
@@ -57,7 +57,8 @@ const SkillAssessmentFormSchema = z.object({
 
 type SkillAssessmentState = {
   error?: string | null;
-} & AssessSkillsOutput;
+  skillProfile: AssessSkillsOutput['skillProfile'] | null;
+};
 
 export async function getSkillAssessment(
   prevState: SkillAssessmentState,
@@ -83,12 +84,7 @@ export async function getSkillAssessment(
      const errorMessage = (typeof firstResponseError === 'object' && firstResponseError.answer?.[0]) || 'Invalid input.';
     return {
       error: errorMessage,
-      skillProfile: {
-        overallScore: 0,
-        strengths: [],
-        weaknesses: [],
-        recommendations: [],
-      }
+      skillProfile: null
     };
   }
 
@@ -100,12 +96,7 @@ export async function getSkillAssessment(
     const error = e instanceof Error ? e.message : 'An unexpected error occurred.';
     return {
       error: `AI assessment failed: ${error}`,
-      skillProfile: {
-        overallScore: 0,
-        strengths: [],
-        weaknesses: [],
-        recommendations: [],
-      }
+      skillProfile: null
     };
   }
 }

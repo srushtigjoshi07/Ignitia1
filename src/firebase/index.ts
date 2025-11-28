@@ -16,11 +16,10 @@ const firebaseConfig: FirebaseOptions = {
 
 function initializeFirebase() {
   if (getApps().length > 0) {
-    return {
-      app: getApp(),
-      auth: getAuth(),
-      firestore: getFirestore(),
-    };
+    const app = getApp();
+    const auth = getAuth(app);
+    const firestore = getFirestore(app);
+    return { app, auth, firestore };
   }
 
   const app = initializeApp(firebaseConfig);
@@ -39,3 +38,4 @@ export { initializeFirebase };
 
 export * from './provider';
 export * from './auth/use-user';
+export { useAuth, useFirestore, useFirebaseApp } from './provider';

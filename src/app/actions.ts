@@ -51,7 +51,7 @@ const SkillAssessmentFormSchema = z.object({
   testName: z.string(),
   responses: z.array(z.object({
     question: z.string(),
-    answer: z.string().trim().min(1, { message: 'Please answer all questions before submitting.' }),
+    answer: z.string().trim().min(10, { message: 'Please provide a more detailed and understandable answer.' }),
   })),
 });
 
@@ -81,7 +81,7 @@ export async function getSkillAssessment(
      const fieldErrors = validatedFields.error.flatten().fieldErrors;
      // Find the first error in the responses array to display a specific message
      const firstResponseError = fieldErrors.responses?.[0];
-     const errorMessage = (typeof firstResponseError === 'object' && firstResponseError.answer?.[0]) || 'Invalid input.';
+     const errorMessage = (typeof firstResponseError === 'object' && firstResponseError.answer?.[0]) || 'Invalid input. Please ensure all answers are detailed enough.';
     return {
       error: errorMessage,
       skillProfile: null

@@ -51,7 +51,7 @@ const SkillAssessmentFormSchema = z.object({
   testName: z.string(),
   responses: z.array(z.object({
     question: z.string(),
-    answer: z.string().min(1, { message: 'Please answer all questions.' }),
+    answer: z.string().trim().min(1, { message: 'Please answer all questions before submitting.' }),
   })),
 });
 
@@ -79,8 +79,8 @@ export async function getSkillAssessment(
 
   if (!validatedFields.success) {
      const fieldErrors = validatedFields.error.flatten().fieldErrors;
+     // Find the first error in the responses array to display a specific message
      const firstResponseError = fieldErrors.responses?.[0];
-     // A bit convoluted to get to the nested error message
      const errorMessage = (typeof firstResponseError === 'object' && firstResponseError.answer?.[0]) || 'Invalid input.';
     return {
       error: errorMessage,

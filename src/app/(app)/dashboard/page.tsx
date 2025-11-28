@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
-import { ArrowRight, Bell, ClipboardCheck, Target, MessageSquare } from "lucide-react"
+import { ArrowRight, Bell, ClipboardCheck, Target } from "lucide-react"
 
 import {
   Card,
@@ -128,23 +128,6 @@ export default function DashboardPage() {
               </li>
             </ul>
           </CardContent>
-        </Card>
-         <Card>
-          <CardHeader>
-            <CardTitle className="font-headline flex items-center gap-2">
-              <MessageSquare className="h-6 w-6" />
-              AI Support Agent
-            </CardTitle>
-            <CardDescription>Have questions? Ask our AI assistant.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">Click the button below to open the chat and get instant help with your queries.</p>
-          </CardContent>
-           <CardFooter>
-            <Button variant="outline" className="w-full" asChild>
-              <Link href="/support">Chat Now</Link>
-            </Button>
-          </CardFooter>
         </Card>
       </div>
     </div>

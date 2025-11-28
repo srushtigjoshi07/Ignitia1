@@ -3,7 +3,6 @@
 import { z } from 'zod';
 import { generateLearningPath, type LearningPathInput, type LearningPathOutput } from '@/ai/flows/dynamic-learning-paths';
 import { assessSkills, type AssessSkillsInput, type AssessSkillsOutput } from '@/ai/ai-skill-assessment';
-import { askSupportAgentFlow } from '@/ai/flows/support-agent';
 
 
 const LearningPathFormSchema = z.object({
@@ -108,24 +107,5 @@ export async function getSkillAssessment(
         recommendations: [],
       }
     };
-  }
-}
-
-
-const SupportAgentSchema = z.string().min(1, { message: 'Query cannot be empty.' });
-
-export async function askSupportAgent(query: string): Promise<string> {
-  const validatedFields = SupportAgentSchema.safeParse(query);
-
-  if (!validatedFields.success) {
-    return validatedFields.error.flatten().formErrors[0] || "Invalid query.";
-  }
-
-  try {
-    const result = await askSupportAgentFlow(validatedFields.data);
-    return result;
-  } catch (e) {
-    const error = e instanceof Error ? e.message : 'An unexpected error occurred.';
-    return `AI agent failed: ${error}`;
   }
 }
